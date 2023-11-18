@@ -22,22 +22,13 @@ public class BaseUser {
     @Before
     public void setup() {
         user = CreateUserRequest.getRandomUser();
-    }
-
-    @After
-    public void cleanUp() {
-        if (token == null) return;
-        UserApi.deleteUser(user, token);
-    }
-
-    @Before
-    public void setUp() {
         createUserRequest = CreateUserRequest.getRandomUser();
     }
 
     @After
     public void tearDown() {
         if (token == null) return;
+        UserApi.deleteUser(user, token);
         UserApi.deleteUser(createUserRequest, token);
     }
 }
